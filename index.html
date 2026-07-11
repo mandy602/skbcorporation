@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKB Corporation | Industrial Pyrolysis & Thermal Conversion Equipment</title>
+  <style>
+    :root {
+      --forest: #1b4332;
+      --sage: #588157;
+      --sage-light: #a3b18a;
+      --cream: #faf7f2;
+      --cream-dark: #f0ebe0;
+      --terracotta: #c1663c;
+      --terracotta-light: #e07b4f;
+      --text: #2d2a26;
+      --muted: #6b6560;
+      --line: #d4cfc6;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(27,67,50,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 6vw;
+      background: rgba(250,247,242,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700; letter-spacing: 2px; font-size: 17px; color: var(--forest);
+    }
+    nav { display: flex; gap: 28px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+    nav a:hover { color: var(--forest); }
+    .lang { display: flex; gap: 6px; margin-left: 20px; }
+    .lang button {
+      border: 1px solid var(--line); background: transparent; color: var(--muted);
+      padding: 7px 12px; cursor: pointer; border-radius: 999px; font-size: 12px; font-weight: 600;
+    }
+    .lang button.active { background: var(--forest); border-color: var(--forest); color: var(--white); }
+
+    .hero {
+      min-height: 100vh; padding: 160px 6vw 100px; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(27,67,50,.82) 0%, rgba(27,67,50,.35) 55%, rgba(88,129,87,.18) 100%), url('skb-images/hero-bg.jpg') center/cover no-repeat;
+    }
+    .hero::after { content:""; position:absolute; bottom:-10%; right:-8%; width:50vw; height:50vw; border-radius:50%; background:radial-gradient(circle, rgba(163,177,138,.35), transparent 70%); pointer-events:none; }
+    .hero-content { max-width: 720px; position: relative; z-index: 1; }
+    .eyebrow { color: var(--sage-light); text-transform: uppercase; letter-spacing: 3px; font-size: 13px; margin-bottom: 22px; font-weight: 600; }
+    .hero h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(32px,4vw,56px); line-height:1.15; letter-spacing:-0.5px; margin-bottom:20px; color:var(--white); max-width:660px; }
+    .hero .subtitle { color: rgba(255,255,255,.82); max-width: 580px; font-size: 16px; margin-bottom: 36px; }
+    .buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; padding: 16px 28px; border-radius: 999px; border: none; font-weight: 700; font-size: 14px; cursor: pointer; transition: all .3s; }
+    .btn.primary { background: var(--terracotta); color: #fff; box-shadow: 0 4px 18px rgba(193,102,60,.35); }
+    .btn.primary:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+    .btn.secondary { background: rgba(255,255,255,.15); color: #fff; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.3); }
+    .btn.secondary:hover { background: rgba(255,255,255,.25); }
+
+    section { padding: 100px 6vw; }
+    .section-header { text-align: center; max-width: 780px; margin: 0 auto 60px; }
+    .section-header h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(28px,3.5vw,44px); line-height:1.15; margin-bottom:16px; color:var(--forest); letter-spacing:-0.5px; }
+    .section-header p { color: var(--muted); font-size: 17px; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .card { background: var(--white); border-radius: 20px; padding: 34px 26px; box-shadow: var(--shadow); transition: transform .3s, box-shadow .3s; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 8px 36px rgba(27,67,50,.12); }
+    .card .icon { font-size: 36px; margin-bottom: 18px; }
+    .card h3 { font-family: Georgia, "Times New Roman", serif; font-size: 20px; margin-bottom: 10px; color: var(--forest); }
+    .card p { color: var(--muted); font-size: 15px; line-height: 1.65; }
+
+    .tagline-band { text-align: center; padding: 60px 6vw 0; background: var(--cream); }
+    .tagline { font-family: Georgia, "Times New Roman", serif; font-size: clamp(20px,2.8vw,30px); color: var(--forest); line-height:1.4; max-width:700px; margin:0 auto; font-style:italic; }
+
+    .alt-bg { background: var(--cream-dark); }
+    .dark-band { background: var(--forest); color: var(--white); }
+    .dark-band .section-header h2 { color: var(--white); }
+    .dark-band .section-header p { color: rgba(255,255,255,.7); }
+    .dark-band .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); box-shadow: none; }
+    .dark-band .card h3 { color: var(--white); }
+    .dark-band .card p { color: rgba(255,255,255,.65); }
+
+    .features-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .feature-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .feature-num { font-family: Georgia, "Times New Roman", serif; font-size: 28px; color: var(--sage-light); font-weight: 700; flex-shrink: 0; line-height: 1; }
+    .feature-item h4 { font-family: Georgia, "Times New Roman", serif; font-size: 17px; margin-bottom: 4px; }
+    .feature-item p { color: rgba(255,255,255,.65); font-size: 14px; line-height: 1.6; }
+
+    .numbers { display: grid; grid-template-columns: repeat(4,1fr); gap: 30px; max-width: 950px; margin: 0 auto; text-align: center; }
+    .num-block .big { font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px,5vw,64px); font-weight: 700; color: var(--sage-light); line-height: 1; }
+    .num-block .label { margin-top: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,.65); }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .image-panel { min-height: 420px; border-radius: 24px; background: linear-gradient(180deg, rgba(27,67,50,.12), rgba(27,67,50,.5)), url('skb-images/tech-bg.jpg') center/cover; box-shadow: var(--shadow); }
+
+    .cta { text-align: center; background: linear-gradient(135deg, rgba(193,102,60,.08), rgba(88,129,87,.08)), var(--cream-dark); }
+    .cta h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(28px,3.5vw,42px); line-height:1.15; margin-bottom:16px; color:var(--forest); }
+    .cta p { color: var(--muted); max-width: 620px; margin: 0 auto 34px; font-size: 17px; }
+    .cta .btn.primary { font-size: 15px; padding: 18px 36px; }
+
+    footer { padding: 40px 6vw; background: var(--forest); color: rgba(255,255,255,.6); display: flex; justify-content: space-between; gap: 20px; font-size: 13px; }
+    footer strong { color: var(--white); }
+
+    [data-fr] { display: none; }
+    body.fr [data-en] { display: none; }
+    body.fr [data-fr] { display: initial; }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .grid-4, .grid-3, .split, .features-grid, .numbers { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 30px; }
+      .image-panel { min-height: 280px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">SKB CORPORATION</div>
+    <nav>
+      <a href="#about"><span data-en>About</span><span data-fr>À propos</span></a>
+      <a href="#solutions"><span data-en>Solutions</span><span data-fr>Solutions</span></a>
+      <a href="#expertise"><span data-en>Expertise</span><span data-fr>Expertise</span></a>
+      <a href="#reach"><span data-en>Reach</span><span data-fr>Portée</span></a>
+      <a href="#contact"><span data-en>Contact</span><span data-fr>Contact</span></a>
+    </nav>
+    <div class="lang">
+      <button id="enBtn" class="active">EN</button>
+      <button id="frBtn">FR</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span data-en>Since 2014 · Industrial Pyrolysis & Thermal Conversion Equipment</span>
+          <span data-fr>Depuis 2014 · Équipements industriels de pyrolyse et conversion thermique</span>
+        </div>
+        <h1>
+          <span data-en>Industrial Pyrolysis & Thermal Conversion Equipment.</span>
+          <span data-fr>Équipements industriels de pyrolyse et conversion thermique.</span>
+        </h1>
+        <p class="subtitle">
+          <span data-en>Founded in 2014, SKB Corporation supplies industrial pyrolysis and thermal conversion equipment for plastic, tyre, and biomass processing — with end-to-end engineering, installation, commissioning, and after-sales support across global markets.</span>
+          <span data-fr>Fondée en 2014, SKB Corporation fournit des équipements industriels de pyrolyse et conversion thermique pour le traitement du plastique, des pneus et de la biomasse — avec ingénierie, installation, mise en service et support après-vente sur les marchés mondiaux.</span>
+        </p>
+        <div class="buttons">
+          <a class="btn primary" href="#solutions"><span data-en>Explore Equipment</span><span data-fr>Découvrir nos équipements</span></a>
+          <a class="btn secondary" href="#contact"><span data-en>Get in Touch</span><span data-fr>Nous contacter</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section id="about">
+      <div class="tagline-band">
+        <p class="tagline">
+          <span data-en>"Industrial pyrolysis systems — engineered, supplied, and supported worldwide."</span>
+          <span data-fr>"Systèmes de pyrolyse industriels — conçus, fournis et soutenus dans le monde entier."</span>
+        </p>
+      </div>
+      <div class="section-header">
+        <h2><span data-en>Since 2014: Industrial Expertise, Across Continents</span><span data-fr>Depuis 2014 : expertise industrielle, sur plusieurs continents</span></h2>
+        <p>
+          <span data-en>Since its founding in 2014, SKB Corporation has built deep expertise in industrial pyrolysis and thermal conversion equipment supply, project engineering, and international project delivery — with a proven track record spanning Europe, Asia, and Africa.</span>
+          <span data-fr>Depuis sa fondation en 2014, SKB Corporation a développé une expertise approfondie en fourniture d'équipements industriels de pyrolyse et conversion thermique, ingénierie de projet et réalisation de projets internationaux — avec une expérience avérée en Europe, en Asie et en Afrique.</span>
+        </p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon">&#x1F30D;</div>
+          <h3><span data-en>International Project Experience</span><span data-fr>Expérience projet internationale</span></h3>
+          <p><span data-en>Cross-border project delivery across Europe, Asia, and Africa.</span><span data-fr>Réalisation de projets transfrontaliers en Europe, en Asie et en Afrique.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x2699;</div>
+          <h3><span data-en>Industrial Equipment Expertise</span><span data-fr>Expertise en équipements industriels</span></h3>
+          <p><span data-en>Deep knowledge in process equipment, modular systems, and EPC project execution.</span><span data-fr>Connaissance approfondie en équipements de procédés, systèmes modulaires et exécution de projets EPC.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x267B;</div>
+          <h3><span data-en>Equipment Lifecycle Support</span><span data-fr>Support du cycle de vie des équipements</span></h3>
+          <p><span data-en>From installation and commissioning to after-sales technical support and spare parts supply throughout the equipment lifecycle.</span><span data-fr>De l'installation et la mise en service au support technique après-vente et à la fourniture de pièces détachées tout au long du cycle de vie des équipements.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x1F91D;</div>
+          <h3><span data-en>Global Partnership Network</span><span data-fr>Réseau mondial de partenaires</span></h3>
+          <p><span data-en>Technology partners, industrial collaborators, and local developers in key markets worldwide.</span><span data-fr>Partenaires technologiques, collaborateurs industriels et développeurs locaux sur les marchés clés mondiaux.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SOLUTIONS ═══ -->
+    <section id="solutions" class="alt-bg">
+      <div class="section-header">
+        <h2><span data-en>Industrial Pyrolysis & Thermal Conversion Equipment</span><span data-fr>Équipements industriels de pyrolyse et conversion thermique</span></h2>
+        <p>
+          <span data-en>Engineered pyrolysis systems for plastic, tyre, and biomass conversion — delivering pyrolysis oil, recovered carbon black, and renewable carbon to global circular economy markets.</span>
+          <span data-fr>Systèmes de pyrolyse conçus pour la conversion du plastique, des pneus et de la biomasse — fournissant huile de pyrolyse, noir de carbone récupéré et carbone renouvelable aux marchés mondiaux de l'économie circulaire.</span>
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">&#x2699;</div>
+          <h3><span data-en>Plastic Pyrolysis Systems</span><span data-fr>Systèmes de pyrolyse du plastique</span></h3>
+          <p><span data-en>Modular industrial systems converting waste plastics into pyrolysis oil, carbon black and combustible gas.</span><span data-fr>Systèmes industriels modulaires convertissant les déchets plastiques en huile de pyrolyse, noir de carbone et gaz combustible.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x2697;</div>
+          <h3><span data-en>Tyre Pyrolysis Systems</span><span data-fr>Systèmes de pyrolyse des pneus</span></h3>
+          <p><span data-en>Industrial pyrolysis systems for recovering pyrolysis oil, recovered carbon black (rCB), steel wire and fuel gas from end-of-life tyres.</span><span data-fr>Systèmes de pyrolyse industriels pour la récupération d'huile de pyrolyse, de noir de carbone récupéré (rCB), de fil d'acier et de gaz combustible à partir de pneus usagés.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x26A1;</div>
+          <h3><span data-en>Biomass Conversion Systems</span><span data-fr>Systèmes de conversion de la biomasse</span></h3>
+          <p><span data-en>Advanced thermal conversion equipment for biomass feedstocks, supporting renewable carbon and sustainable energy projects.</span><span data-fr>Équipements avancés de conversion thermique pour les matières premières de biomasse, soutenant les projets de carbone renouvelable et d'énergie durable.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXPERTISE ═══ -->
+    <section id="expertise" class="dark-band">
+      <div class="section-header">
+        <h2><span data-en>Engineering Excellence. Global Execution.</span><span data-fr>Excellence technique. Exécution mondiale.</span></h2>
+        <p>
+          <span data-en>Since 2014 — accumulated industrial expertise applied across continents and technologies.</span>
+          <span data-fr>Depuis 2014 — une expertise industrielle accumulée et déployée sur plusieurs continents et technologies.</span>
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div>
+            <h4><span data-en>Cross-Border Project Delivery</span><span data-fr>Livraison de projets transfrontaliers</span></h4>
+            <p><span data-en>Proven capability to execute complex industrial projects across diverse regulatory, logistical, and cultural environments.</span><span data-fr>Capacité avérée à exécuter des projets industriels complexes dans des environnements réglementaires, logistiques et culturels variés.</span></p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div>
+            <h4><span data-en>Modular by Design</span><span data-fr>Modulaire par conception</span></h4>
+            <p><span data-en>Containerized and skid-mounted systems reduce on-site construction time, cost, and complexity — without compromising performance.</span><span data-fr>Des systèmes conteneurisés et sur skids réduisent les délais, coûts et complexité de construction sur site — sans compromis sur la performance.</span></p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div>
+            <h4><span data-en>Process Equipment Depth</span><span data-fr>Maîtrise des équipements de procédés</span></h4>
+            <p><span data-en>Deep technical knowledge spanning thermal conversion, gas handling, separation, and energy recovery systems.</span><span data-fr>Connaissance technique approfondie couvrant la conversion thermique, le traitement des gaz, la séparation et les systèmes de récupération d'énergie.</span></p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div>
+            <h4><span data-en>Long-Term Partnership</span><span data-fr>Partenariat à long terme</span></h4>
+            <p><span data-en>We stay with our clients beyond commissioning — technical support, spare parts, and operational optimization throughout the asset lifecycle.</span><span data-fr>Nous restons aux côtés de nos clients au-delà de la mise en service — support technique, pièces détachées et optimisation opérationnelle tout au long du cycle de vie.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ REACH / IMPACT ═══ -->
+    <section id="reach">
+      <div class="section-header">
+        <h2><span data-en>Global Reach, Tangible Impact</span><span data-fr>Portée mondiale, impact concret</span></h2>
+        <p>
+          <span data-en>Since 2014, we have supplied industrial pyrolysis and thermal conversion equipment to projects across Europe, Asia, and Africa — supporting the global circular economy.</span>
+          <span data-fr>Depuis 2014, nous avons fourni des équipements industriels de pyrolyse et conversion thermique à des projets en Europe, en Asie et en Afrique — soutenant l'économie circulaire mondiale.</span>
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">&#x1F30D;</div>
+          <h3><span data-en>Cross-Border Delivery</span><span data-fr>Livraison transfrontalière</span></h3>
+          <p><span data-en>Projects successfully delivered across Europe, Asia, and Africa — navigating diverse regulatory, logistical, and cultural environments.</span><span data-fr>Projets livrés avec succès en Europe, en Asie et en Afrique — naviguant dans des environnements réglementaires, logistiques et culturels divers.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x2699;</div>
+          <h3><span data-en>Industrial Process Know-How</span><span data-fr>Savoir-faire en procédés industriels</span></h3>
+          <p><span data-en>Deep technical expertise in thermal conversion, gas handling, separation technologies, and modular system integration.</span><span data-fr>Expertise technique approfondie en conversion thermique, traitement des gaz, technologies de séparation et intégration de systèmes modulaires.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon">&#x1F4C8;</div>
+          <h3><span data-en>Scalable Impact</span><span data-fr>Impact à grande échelle</span></h3>
+          <p><span data-en>From single-unit deployments to multi-site rollouts — our modular approach scales with your ambition and market demand.</span><span data-fr>Du déploiement unitaire au déploiement multi-sites — notre approche modulaire s'adapte à votre ambition et à la demande du marché.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section id="contact" class="cta">
+      <h2><span data-en>Discuss Your Equipment Requirements</span><span data-fr>Discutons de vos besoins en équipements</span></h2>
+      <p>
+        <span data-en>Whether you are an investor, industrial operator, or project developer — our team is ready to discuss how SKB Corporation can support your industrial equipment and engineering requirements.</span>
+        <span data-fr>Que vous soyez investisseur, industriel ou développeur de projets — notre équipe est prête à échanger sur la manière dont SKB Corporation peut répondre à vos besoins en équipements industriels et ingénierie.</span>
+      </p>
+      <a class="btn primary" href="mailto:contact@skbcorporation.com"><span data-en>Start the Conversation</span><span data-fr>Engager la conversation</span></a>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>SKB CORPORATION</strong> &mdash; Founded in 2014 · Industrial Pyrolysis & Thermal Conversion Equipment</div>
+    <div>21 rue Charles V, 75004 Paris &middot; contact@skbcorporation.com &middot; LinkedIn</div>
+  </footer>
+
+  <script>
+    const b=document.body,en=document.getElementById('enBtn'),fr=document.getElementById('frBtn');
+    en.onclick=()=>{b.classList.remove('fr');en.classList.add('active');fr.classList.remove('active')};
+    fr.onclick=()=>{b.classList.add('fr');fr.classList.add('active');en.classList.remove('active')};
+  </script>
+</body>
+</html>
