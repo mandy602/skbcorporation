@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skb-corporation.com/sitemap.xml
